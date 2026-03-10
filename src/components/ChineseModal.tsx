@@ -16,6 +16,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
         korean: "",
         lastPronunciation: "",
         meaningPronunciation: "",
+        example: "",
         bookPage: "",
         webLink: "",
         source: ""
@@ -29,6 +30,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             korean: word?.korean.join(",") ?? "",
             lastPronunciation: word?.lastPronunciation?.join(",") ?? "",
             meaningPronunciation: word?.meaningPronunciation?.join(",") ?? "",
+            example: word?.example ?? "",
             bookPage: word?.bookPage?.toString() ?? "",
             webLink: word?.webLink ?? "",
             source: word?.source ?? ""
@@ -72,6 +74,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             korean: form.korean.split(','),
             lastPronunciation: form.lastPronunciation.split(','),
             meaningPronunciation: form.meaningPronunciation.split(','),
+            example: form.example,
             bookPage: parseInt(form.bookPage),
             webLink: form.webLink,
             source: form.source
@@ -87,6 +90,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             korean: form.korean.split(','),
             lastPronunciation: form.lastPronunciation.split(','),
             meaningPronunciation: form.meaningPronunciation.split(','),
+            example: form.example,
             bookPage: parseInt(form.bookPage),
             webLink: form.webLink,
             source: form.source
@@ -121,6 +125,10 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
                     <div style={inputDivStyle}>
                         <label>훈독</label><br />
                         <input type="text" name="meaningPronunciation" style={inputStyle} value={form.meaningPronunciation} onChange={handleInputChange} />
+                    </div>
+                    <div style={inputDivStyle}>
+                        <label>예시</label><br />
+                        <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange} />
                     </div>
                     <div style={inputDivStyle}>
                         <label>책 page</label><br />

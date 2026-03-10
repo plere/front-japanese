@@ -32,6 +32,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
             <th style={thStyle}>한국어 의미</th>
             <th style={thStyle}>음독</th>
             <th style={thStyle}>훈독</th>
+            <th style={thStyle}>예시</th>
             <th style={thStyle}>책 page</th>
             <th style={thStyle}>출처</th>
             <th style={thStyle}>삭제</th>
@@ -54,6 +55,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
               <td style={tdStyle}>{word.korean.join(", ")}</td>
               <td style={tdStyle}>{word.lastPronunciation == null ? null : word.lastPronunciation.join(", ")}</td>
               <td style={tdStyle}>{word.meaningPronunciation == null ? null : word.meaningPronunciation.join(", ")}</td>
+              <td style={tdStyle}>{word.example}</td>
               <td style={tdStyle}>{word.bookPage}</td>
               <td style={tdStyle}>{word.source}</td>
               <td style={tdStyle}>
