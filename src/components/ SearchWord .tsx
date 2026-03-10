@@ -1,0 +1,47 @@
+import { useState } from "react";
+import type { WordQuerySearchType } from "../api/types/WordQuery";
+
+const searchTypes = [
+  { value: "WORD_TYPE", label: "유형" },
+  { value: "KOREAN", label: "뜻" },
+  { value: "PAGE", label: "페이지" },
+];
+
+
+export default function SearchWord ({onGetQuery}: {onGetQuery: (type?: WordQuerySearchType, value?: string) => void}) {
+  const [search, setSearch] = useState<{
+    searchType?: WordQuerySearchType;
+    searchValue?: string
+  }>({
+    searchType: "WORD_TYPE"
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+    const { name, value } = e.target;
+    setSearch((prev) => ({
+        ...prev,
+        searchValue: value,
+    }));
+  };
+
+  const setSearchType = (value: WordQuerySearchType) => setSearch({...search, searchType: value});
+  const startSearch = () => {
+    onGetQuery(search.searchType, search.searchValue);
+  }
+
+  return (
+    <>
+    <select value={search.searchType} onChange={(e) => setSearchType(e.target.value as WordQuerySearchType )}>
+      {searchTypes.map(opt => (
+        <option key={opt.value} value={opt.value}>
+          {opt.label}
+        </option>
+      ))}
+    </select>
+    <input type="text" value={search.searchValue} onChange={handleInputChange}/>
+    <button type="button" onClick={startSearch}>검색</button>
+    </>
+  )
+};
