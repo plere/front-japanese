@@ -49,7 +49,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
               <td>훈독</td>
               <td><button onClick={() => showAnswer(word.id)}>정답</button></td>
               <td>{word.bookPage}</td>
-              <td>{word.source}</td>
+              <td>{word.examplePage}</td>
               <td>
               {
                 word.webLink ?

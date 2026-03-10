@@ -16,7 +16,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
         japanese: "",
         pronunciation: "",
         korean: "",
-        source: ""
+        examplePage: ""
     });
 
     useEffect(() => {
@@ -26,7 +26,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
             japanese: word?.word ?? "",
             pronunciation: word?.pronunciation ?? "",
             korean: word?.korean.join(",") ?? "",
-            source: word?.source ?? ""
+            examplePage: word?.examplePage.join(",") ?? ""
         })
 
         const escHandler = (e: KeyboardEvent) => {
@@ -66,7 +66,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
             word: form.japanese,
             pronunciation: form.pronunciation,
             korean: form.korean.split(','),
-            source: form.source
+            examplePage: form.examplePage.split(',')
         });
         onClose();
     }
@@ -78,7 +78,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
             word: form.japanese,
             pronunciation: form.pronunciation,
             korean: form.korean.split(','),
-            source: form.source
+            examplePage: form.examplePage.split(','),
         });
         onClose();
     }
@@ -113,7 +113,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
                     </div>
                     <div style={inputDivStyle}>
                         <label>출처</label><br />
-                        <input type="text" name="source" style={inputStyle} value={form.source} onChange={handleInputChange} onKeyDown={enterEvent}/>
+                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent}/>
                     </div>
                 </div>
 

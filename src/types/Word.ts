@@ -8,6 +8,6 @@ export type Word = {
     meaningPronunciation?: string[];
     example?: string;
     bookPage?: number;
-    source: string[];
+    examplePage: string[];
     webLink?: string;
 }

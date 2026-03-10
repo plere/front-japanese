@@ -19,7 +19,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
         example: "",
         bookPage: "",
         webLink: "",
-        source: ""
+        examplePage: ""
     });
 
     useEffect(() => {
@@ -33,7 +33,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             example: word?.example ?? "",
             bookPage: word?.bookPage?.toString() ?? "",
             webLink: word?.webLink ?? "",
-            source: word?.source ?? ""
+            examplePage: word?.examplePage.join(",") ?? "",
         })
 
         const escHandler = (e: KeyboardEvent) => {
@@ -77,7 +77,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             example: form.example,
             bookPage: parseInt(form.bookPage),
             webLink: form.webLink,
-            source: form.source
+            examplePage: form.examplePage.split(','),
         });
         onClose();
     }
@@ -93,7 +93,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             example: form.example,
             bookPage: parseInt(form.bookPage),
             webLink: form.webLink,
-            source: form.source
+            examplePage: form.examplePage.split(','),
         });
         onClose();
     }
@@ -140,7 +140,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
                     </div>
                     <div style={inputDivStyle}>
                         <label>출처</label><br />
-                        <input type="text" name="source" style={inputStyle} value={form.source} onChange={handleInputChange} onKeyDown={enterEvent}/>
+                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent}/>
                     </div>
                 </div>
 

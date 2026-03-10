@@ -35,7 +35,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
             <th style={thStyle}>훈독</th>
             <th style={thStyle}>예시</th>
             <th style={thStyle}>책 page</th>
-            <th style={thStyle}>출처</th>
+            <th style={thStyle}>예시페이지</th>
             <th style={thStyle}>삭제</th>
             <th style={thStyle}>수정</th>
           </tr>
@@ -58,7 +58,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
               <td style={tdStyle}>{word.meaningPronunciation == null ? null : word.meaningPronunciation.join(", ")}</td>
               <td style={tdStyle}>{word.example}</td>
               <td style={tdStyle}>{word.bookPage}</td>
-              <td style={tdStyle}>{word.source}</td>
+              <td style={tdStyle}>{word.examplePage}</td>
               <td style={tdStyle}>
                 <CheckModalButton text="삭제" callFunction={onDlete} args={[word.id]}></CheckModalButton>
               </td>
