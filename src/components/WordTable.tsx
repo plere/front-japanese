@@ -1,5 +1,6 @@
 import type { PageWord } from "../api/types/PageWordResponse";
 import { deleteWordApi } from "../api/WordApi";
+import CheckModalButton from "../common/CheckModalButton";
 import type { Word } from "../types/Word";
 import CurrentPageList from "./WordPagenation";
 
@@ -59,7 +60,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
               <td style={tdStyle}>{word.bookPage}</td>
               <td style={tdStyle}>{word.source}</td>
               <td style={tdStyle}>
-                <button type="button" onClick={() => onDlete(word.id)}>삭제</button>
+                <CheckModalButton text="삭제" callFunction={onDlete} args={[word.id]}></CheckModalButton>
               </td>
               <td style={tdStyle}>
                 <button type="button" onClick={() => onModify(word)}>수정</button>
