@@ -8,6 +8,7 @@ export type WordQuery = {
 export const WordTypeValue = {
     CHINA_CHAR: "CHINA_CHAR",
     WORD: "WORD",
+    GRAMMAR: "GRAMMAR"
 } as const;
 
 export type WordTypeValueType = typeof WordTypeValue[keyof typeof WordTypeValue];

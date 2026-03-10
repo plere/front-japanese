@@ -9,6 +9,7 @@ import ChineseModal from './components/ChineseModal';
 import SearchWord from './components/ SearchWord ';
 import type { WordQuery, WordQuerySearchType } from './api/types/WordQuery';
 import QuizeModal from './components/quize/QuizeModal';
+import GrammarModal from './components/GrammarModal';
 
 function App() {
   const [getQuery, setGetQuery] = useState<WordQuery>({
@@ -21,6 +22,7 @@ function App() {
   const [wordModalOpen, setWordModalOpen] = useState(false);
   const [chineseModalOpen, setChineseModalOpen] = useState(false);
   const [quizeModalOpen, setQuizeModalOpen] = useState(false);
+  const [grammarModalOpen, setGrammarModalOpen] = useState(false);
   const [createMode, setCreateMode] = useState(true);
   const [word, setWord] = useState<Word|null>(null);
 
@@ -55,6 +57,17 @@ function App() {
     onRefresh();
   };
 
+  const handleOpenGrammarModal = () => {
+    setWord(null);
+    setCreateMode(true);
+    setGrammarModalOpen(true);
+  };
+
+  const handleCloseGrammarModal = () => {
+    setGrammarModalOpen(false);
+    onRefresh();
+  };
+
   const handleOpenQuizeModal = () => setQuizeModalOpen(true);
 
   const handleCloseQuizeModal = () => {
@@ -78,10 +91,16 @@ function App() {
     setWord(word);
     setCreateMode(false);
 
-    if(word.type === "WORD") {
-      setWordModalOpen(true);
-    } else {
-      setChineseModalOpen(true);
+    switch(word.type) {
+      case "WORD":
+        setWordModalOpen(true);
+        break;
+      case "CHINA_CHAR":
+        setChineseModalOpen(true);
+        break;
+      case "GRAMMAR":
+        setGrammarModalOpen(true);
+        break;
     }
   }
   
@@ -98,6 +117,10 @@ function App() {
       <ChineseModal onClose={handleCloseChineseModal} createMode={createMode} word={word}/>
     )}
 
+    {grammarModalOpen && (
+      <GrammarModal onClose={handleCloseGrammarModal} createMode={createMode} word={word}/>
+    )}
+
     {quizeModalOpen && (
       <QuizeModal onClose={handleCloseQuizeModal}/>
     )}
@@ -106,6 +129,7 @@ function App() {
       <SearchWord onGetQuery={onGetQuery}/>
       <a onClick={handleOpenWordModal} >➕ 단어 등록</a>
       <a onClick={handleOpenChineseModal} >➕ 한자 등록</a>
+      <a onClick={handleOpenGrammarModal} >➕ 문법 등록</a>
       <a onClick={handleOpenQuizeModal} >Q. 퀴즈풀기</a>
     </div>
 
