@@ -34,7 +34,6 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
             <th style={thStyle}>훈독</th>
             <th style={thStyle}>책 page</th>
             <th style={thStyle}>출처</th>
-            <th style={thStyle}>링크</th>
             <th style={thStyle}>삭제</th>
             <th style={thStyle}>수정</th>
           </tr>
@@ -42,7 +41,14 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
         <tbody>
           {pageWord.words.map((word) => (
             <tr key={word.id}>
-              <td style={tdStyle}>{word.type}</td>
+              <td style={tdStyle}>
+                {
+                  word.webLink ?
+                  (<a href={word.webLink} target="_blank" rel="noopener noreferrer">
+                    {word.type}
+                  </a>) : (<>{word.type}</>)
+                }
+              </td>
               <td style={tdStyle}>{word.word}</td>
               <td style={tdStyle}>{word.pronunciation}</td>
               <td style={tdStyle}>{word.korean.join(", ")}</td>
@@ -50,14 +56,6 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
               <td style={tdStyle}>{word.meaningPronunciation == null ? null : word.meaningPronunciation.join(", ")}</td>
               <td style={tdStyle}>{word.bookPage}</td>
               <td style={tdStyle}>{word.source}</td>
-              <td style={tdStyle}>
-                {
-                  word.webLink ?
-                  (<a href={word.webLink} target="_blank" rel="noopener noreferrer">
-                    링크
-                  </a>) : (null)
-                }
-              </td>
               <td style={tdStyle}>
                 <button type="button" onClick={() => onDlete(word.id)}>삭제</button>
               </td>
