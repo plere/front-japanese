@@ -13,7 +13,8 @@ export default function SearchWord ({onGetQuery}: {onGetQuery: (type?: WordQuery
     searchType?: WordQuerySearchType;
     searchValue?: string
   }>({
-    searchType: "WORD_TYPE"
+    searchType: "WORD_TYPE",
+    searchValue: WordTypeValue.CHINA_CHAR
   });
 
   const handleInputChange = (
