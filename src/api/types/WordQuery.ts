@@ -13,4 +13,4 @@ export const WordTypeValue = {
 
 export type WordTypeValueType = typeof WordTypeValue[keyof typeof WordTypeValue];
 
-export type WordQuerySearchType = "WORD_TYPE"|"KOREAN"|"PAGE";
+export type WordQuerySearchType = "WORD_TYPE"|"KOREAN"|"PAGE"|"PRONUNCIATION";
