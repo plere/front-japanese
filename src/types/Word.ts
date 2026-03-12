@@ -7,6 +7,7 @@ export type Word = {
     lastPronunciation?: string[];
     meaningPronunciation?: string[];
     example?: string;
+    exampleKorean?: string;
     bookPage?: number;
     examplePage: string[];
     webLink?: string;

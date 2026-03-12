@@ -16,6 +16,7 @@ export default function GrammarModal({word, createMode, onClose}:Props) {
         japanese: "",
         korean: "",
         example: "",
+        exampleKorean: "",
         examplePage: ""
     });
 
@@ -26,6 +27,7 @@ export default function GrammarModal({word, createMode, onClose}:Props) {
             japanese: word?.word ?? "",
             korean: word?.korean.join(",") ?? "",
             example: word?.example ?? "",
+            exampleKorean: word?.exampleKorean ?? "",
             examplePage: word?.examplePage.join(",") ?? ""
         })
 
@@ -78,6 +80,7 @@ export default function GrammarModal({word, createMode, onClose}:Props) {
             word: form.japanese,
             korean: form.korean.split(','),
             example: form.example,
+            exampleKorean: form.exampleKorean,
             examplePage: form.examplePage.split(','),
         });
         onClose();
@@ -106,6 +109,10 @@ export default function GrammarModal({word, createMode, onClose}:Props) {
                     <div style={inputDivStyle}>
                         <label>예시</label><br />
                         <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange}/>
+                    </div>
+                    <div style={inputDivStyle}>
+                        <label>예시 뜻</label><br />
+                        <input type="text" name="exampleKorean" style={inputStyle} value={form.exampleKorean} onChange={handleInputChange}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시페이지</label><br />
