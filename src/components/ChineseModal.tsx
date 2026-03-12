@@ -70,7 +70,7 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
     };
 
     const submitAndClose = async() => {
-        await registerWordApi({
+        const res = await registerWordApi({
             type: "CHINA_CHAR",
             word: form.japanese,
             korean: form.korean.split(','),
@@ -82,7 +82,10 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
             webLink: form.webLink,
             examplePage: form.examplePage.split(','),
         });
-        onClose();
+        
+        if(res) {
+            onClose();
+        }
     }
 
     const modify = async () => {

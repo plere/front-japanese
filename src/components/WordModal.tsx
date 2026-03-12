@@ -61,14 +61,17 @@ export default function WordModal({word, createMode, onClose}:Props) {
     };
 
     const submitAndClose = async() => {
-        await registerWordApi({
+        const res = await registerWordApi({
             type: "WORD",
             word: form.japanese,
             pronunciation: form.pronunciation,
             korean: form.korean.split(','),
             examplePage: form.examplePage.split(',')
         });
-        onClose();
+
+        if(res) {
+            onClose();
+        }
     }
 
     const modify = async () => {

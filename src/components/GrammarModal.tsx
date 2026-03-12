@@ -63,14 +63,18 @@ export default function GrammarModal({word, createMode, onClose}:Props) {
     };
 
     const submitAndClose = async() => {
-        await registerWordApi({
+        const res = await registerWordApi({
             type: "GRAMMAR",
             word: form.japanese,
             korean: form.korean.split(','),
             example: form.example,
+            exampleKorean: form.exampleKorean,
             examplePage: form.examplePage.split(',')
         });
-        onClose();
+        
+        if(res) {
+            onClose();
+        }
     }
 
     const modify = async () => {
