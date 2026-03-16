@@ -3,6 +3,7 @@ import { WordTypeValue, type WordQuerySearchType, type WordTypeValueType } from 
 
 const searchTypes = [
   { value: "WORD_TYPE", label: "유형" },
+  { value: "WORD", label: "일본어" },
   { value: "KOREAN", label: "뜻" },
   { value: "PAGE", label: "페이지" },
   { value: "PRONUNCIATION", label: "발음" },
