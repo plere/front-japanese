@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import RandomQuize from "./RandomQuize";
 import PageQuize from "./PageQuize";
+import BookmarkQuize from "./BookmarkQuize";
 
 
 export default function QuizeModal({onClose} : {onClose: () => void}) {
   const [randomQuizeOpen, setRandomQuizeOpen] = useState(false);
   const [pageQuizeOpen, setPageQuizeOpen] = useState(false);
+  const [bookmarkQuizeOpen, setBookmarkQuizeOpen] = useState(false);
 
   const handleOpenRandomQuize = () => setRandomQuizeOpen(true);
   const handleCloseRandomQuize = () => setRandomQuizeOpen(false);
   const handleOpenPageQuize = () => setPageQuizeOpen(true);
   const handleClosePageQuize = () => setPageQuizeOpen(false);
+  const handleOpenBookmarkQuize = () => setBookmarkQuizeOpen(true);
+  const handleCloseBookmarkQuize = () => setBookmarkQuizeOpen(false);
 
   useEffect(() => {
     const escHandler = (e: KeyboardEvent) => {
@@ -35,12 +39,19 @@ export default function QuizeModal({onClose} : {onClose: () => void}) {
         {pageQuizeOpen && (
           <PageQuize onClose={handleClosePageQuize}/>
         )}
+
+        {bookmarkQuizeOpen && (
+          <BookmarkQuize onClose={handleCloseBookmarkQuize}/>
+        )}
     
         <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
           <a onClick={handleOpenRandomQuize} >1. 랜덤 퀴즈</a>
         </div>
         <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
           <a onClick={handleOpenPageQuize} >2. 페이지 퀴즈</a>
+        </div>
+        <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
+          <a onClick={handleOpenBookmarkQuize} >3. 북마크 퀴즈</a>
         </div>
       </div>
     </div>
