@@ -10,5 +10,5 @@ export type Word = {
     exampleKorean?: string;
     bookPage?: number;
     examplePage: string[];
-    webLink?: string;
+    etc?: string;
 }

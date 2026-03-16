@@ -44,19 +44,19 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
             <tr key={word.id}>
               <td style={tdStyle}>
                 {
-                  word.webLink ?
-                  (<a href={word.webLink} target="_blank" rel="noopener noreferrer">
+                  word.type !== "GRAMMAR" ?
+                  (<a href={`https://ja.dict.naver.com/#/search?query=${word?.word}`} target="_blank" rel="noopener noreferrer">
                     {word.type}
                   </a>) : (<>{word.type}</>)
                 }
               </td>
               <td style={tdStyle}>{word.word}</td>
               <td style={tdStyle}>{word.pronunciation}</td>
-              <td style={tdStyle}>{word.korean.join(", ")}</td>
+              <td style={tdStyle}>{word.korean.join(",")}</td>
               <td style={tdStyle}>{word.lastPronunciation == null ? null : word.lastPronunciation.join(", ")}</td>
               <td style={tdStyle}>{word.meaningPronunciation == null ? null : word.meaningPronunciation.join(", ")}</td>
               <td style={tdStyle}>{word.example}</td>
-              <td style={tdStyle}>{word.examplePage}</td>
+              <td style={tdStyle}>{word.examplePage.join(",")}</td>
               <td style={tdStyle}>
                 <CheckModalButton text="삭제" callFunction={onDlete} args={[word.id]}></CheckModalButton>
               </td>

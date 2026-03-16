@@ -16,7 +16,8 @@ export default function WordModal({word, createMode, onClose}:Props) {
         japanese: "",
         pronunciation: "",
         korean: "",
-        examplePage: ""
+        examplePage: "",
+        etc: ""
     });
 
     useEffect(() => {
@@ -26,7 +27,8 @@ export default function WordModal({word, createMode, onClose}:Props) {
             japanese: word?.word ?? "",
             pronunciation: word?.pronunciation ?? "",
             korean: word?.korean.join(",") ?? "",
-            examplePage: word?.examplePage.join(",") ?? ""
+            examplePage: word?.examplePage.join(",") ?? "",
+            etc: word?.etc
         })
 
         const escHandler = (e: KeyboardEvent) => {
@@ -66,7 +68,8 @@ export default function WordModal({word, createMode, onClose}:Props) {
             word: form.japanese,
             pronunciation: form.pronunciation,
             korean: form.korean.split(','),
-            examplePage: form.examplePage.split(',')
+            examplePage: form.examplePage.split(','),
+            etc: form.etc
         });
 
         if(res) {
@@ -82,6 +85,7 @@ export default function WordModal({word, createMode, onClose}:Props) {
             pronunciation: form.pronunciation,
             korean: form.korean.split(','),
             examplePage: form.examplePage.split(','),
+            etc: form.etc
         });
         onClose();
     }
@@ -113,6 +117,10 @@ export default function WordModal({word, createMode, onClose}:Props) {
                     <div style={inputDivStyle}>
                         <label>뜻[여러개]</label><br />
                         <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange}/>
+                    </div>
+                    <div style={inputDivStyle}>
+                        <label>etc</label><br />
+                        <input type="text" name="etc" style={inputStyle} value={form.etc} onChange={handleInputChange}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>출처</label><br />
