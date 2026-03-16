@@ -26,9 +26,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
           <th>음독</th>
           <th>훈독</th>
           <th>정답</th>
-          <th>책 page</th>
           <th>출처</th>
-          <th>링크</th>
         </tr>
       </thead>
       <tbody>
@@ -45,19 +43,16 @@ export default function QuizeBody({words}: {words: Word[]}) {
                 <input type="text" style={inputStyle} />
                 <td>{word.id != null && openIds.has(word.id) && word.korean.join(",")}</td>
               </td>
-              <td>음독</td>
-              <td>훈독</td>
-              <td><button onClick={() => showAnswer(word.id)}>정답</button></td>
-              <td>{word.bookPage}</td>
-              <td>{word.examplePage}</td>
               <td>
-              {
-                word.webLink ?
-                (<a href={word.webLink} target="_blank" rel="noopener noreferrer">
-                  링크
-                </a>) : (null)
-              } 
+                <input type="text" style={inputStyle} />
+                <td>{word.id != null && openIds.has(word.id) && word.lastPronunciation}</td>
               </td>
+              <td>
+                <input type="text" style={inputStyle} />
+                <td>{word.id != null && openIds.has(word.id) && word.meaningPronunciation}</td>
+              </td>
+              <td><button onClick={() => showAnswer(word.id)}>정답</button></td>
+              <td>{word.examplePage}</td>
             </tr>
           ))
         }
