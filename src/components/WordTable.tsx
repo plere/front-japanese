@@ -2,6 +2,7 @@ import type { PageWord } from "../api/types/PageWordResponse";
 import { deleteWordApi } from "../api/WordApi";
 import CheckModalButton from "../common/CheckModalButton";
 import type { Word } from "../types/Word";
+import BookmarkButton from "./BookmarkButton";
 import CurrentPageList from "./WordPagenation";
 
 type Props = {
@@ -28,6 +29,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
         <thead style={{backgroundColor: "#242424", color: "#f9f9f9"}}>
           <tr>
             <th style={thStyle}>유형</th>
+            <th style={thStyle}>⭐</th>
             <th style={thStyle}>일본어</th>
             <th style={thStyle}>발음</th>
             <th style={thStyle}>한국어 의미</th>
@@ -49,6 +51,9 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
                     {word.type}
                   </a>) : (<>{word.type}</>)
                 }
+              </td>
+              <td style={tdStyle}>
+                <BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}/>
               </td>
               <td style={tdStyle}>{word.word}</td>
               <td style={tdStyle}>{word.pronunciation}</td>

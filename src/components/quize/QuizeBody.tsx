@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Word } from "../../types/Word";
+import BookmarkButton from "../BookmarkButton";
 
 export default function QuizeBody({words}: {words: Word[]}) {
   const [openIds, setOpenIds] = useState<Set<string>>(new Set());
@@ -20,6 +21,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
       <thead style={{backgroundColor: "#242424", color: "#f9f9f9"}}>
         <tr>
           <th>유형</th>
+          <th>⭐</th>
           <th>일본어</th>
           <th>발음</th>
           <th>한국어 의미</th>
@@ -34,6 +36,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
           words.map(word => (
             <tr key={word.id}>
               <td>{word.type}</td>
+              <td><BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}></BookmarkButton></td>
               <td>{word.word} </td>
               <td>
                 <input type="text" style={inputStyle} />

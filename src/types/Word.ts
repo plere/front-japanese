@@ -11,4 +11,5 @@ export type Word = {
     bookPage?: number;
     examplePage: string[];
     etc?: string;
+    isBookmarked: boolean;
 }
