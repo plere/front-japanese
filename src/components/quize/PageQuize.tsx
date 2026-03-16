@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { getWordsApi } from "../../api/WordApi";
-import type { WordQuery } from "../../api/types/WordQuery";
 import CurrentPageList from "../WordPagenation";
 import type { PageWord } from "../../api/types/PageWordResponse";
 import QuizeBody from "./QuizeBody";
+import type { WordQuery } from "../../api/types/WordType";
 
 type Props = {
     onClose: () => void;

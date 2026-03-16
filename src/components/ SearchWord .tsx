@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { WordTypeValue, type WordQuerySearchType, type WordTypeValueType } from "../api/types/WordQuery";
+import { WordTypeValue, type WordQuerySearchType, type WordTypeValueType } from "../api/types/WordType";
 
 const searchTypes = [
   { value: "WORD_TYPE", label: "유형" },
