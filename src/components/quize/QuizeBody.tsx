@@ -37,7 +37,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
             <tr key={word.id}>
               <td>{word.type}</td>
               <td><BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}></BookmarkButton></td>
-              <td>{word.word} </td>
+              <td style={{fontSize: "20px"}}>{word.word} </td>
               <td>
                 <input type="text" style={inputStyle} />
                 <td>{word.id != null && openIds.has(word.id) && word.pronunciation}</td>
@@ -48,11 +48,11 @@ export default function QuizeBody({words}: {words: Word[]}) {
               </td>
               <td>
                 <input type="text" style={inputStyle} />
-                <td>{word.id != null && openIds.has(word.id) && word.lastPronunciation}</td>
+                <td>{word.id != null && openIds.has(word.id) && word.lastPronunciation?.join(",")}</td>
               </td>
               <td>
                 <input type="text" style={inputStyle} />
-                <td>{word.id != null && openIds.has(word.id) && word.meaningPronunciation}</td>
+                <td>{word.id != null && openIds.has(word.id) && word.meaningPronunciation?.join(",")}</td>
               </td>
               <td><button onClick={() => showAnswer(word.id)}>정답</button></td>
               <td>{word.examplePage}</td>
