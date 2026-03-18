@@ -13,6 +13,7 @@ export type RegisterWordType = {
 }
 
 export type ModifyWordType = {
+  id: string;
   type: string;
   word: string;
   pronunciation?: string;
