@@ -38,7 +38,12 @@ export default function BookmarkQuize({onClose}: Props) {
       <div style={{background:"#fff", width:"1000px", margin:"100px auto", padding:"20px", borderRadius:"8px"}}>
       {
         loading ? <p>loading..</p> : (
-          <QuizeBody words={words} />
+          <QuizeBody words={words.map(word => {
+            return {
+              ...word,
+              isBookmarked: true
+          }
+          })} />
         )
       }
       </div>
