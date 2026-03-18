@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import type { PageWord } from "./types/PageWordResponse";
 import type { Word } from "../types/Word";
-import type { ModifyWordType, RegisterWordType, WordQuery } from "./types/WordType";
+import type { ModifyWordType, RegisterWordType, WordPageRangeType, WordQuery } from "./types/WordType";
 
 const api = axios.create({
   baseURL: "http://localhost:10000", // Spring 서버
@@ -9,6 +9,14 @@ const api = axios.create({
 
 export const getWordsApi = async (query: WordQuery): Promise<PageWord> => {
   const response = await api.get<PageWord>("/api", {
+    params: query
+  });
+
+  return response.data;
+};
+
+export const getWordPageRangeApi = async (query: WordPageRangeType): Promise<PageWord> => {
+  const response = await api.get<PageWord>("/api/pages/range", {
     params: query
   });
 

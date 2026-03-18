@@ -34,6 +34,14 @@ export type WordQuery = {
   searchValue?: string;
 }
 
+
+export type WordPageRangeType = {
+  page?: number;
+  size?: number;
+  startPage: number;
+  endPage?: number;
+}
+
 export const WordTypeValue = {
   CHINA_CHAR: "CHINA_CHAR",
   WORD: "WORD",
