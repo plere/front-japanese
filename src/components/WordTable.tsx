@@ -1,5 +1,6 @@
 import type { PageWord } from "../api/types/PageWordResponse";
 import { deleteWordApi } from "../api/WordApi";
+import type { ModalType } from "../App";
 import CheckModalButton from "../common/CheckModalButton";
 import type { Word } from "../types/Word";
 import BookmarkButton from "./BookmarkButton";
@@ -7,13 +8,13 @@ import CurrentPageList from "./WordPagenation";
 
 type Props = {
     pageWord: PageWord,
-    onModify: (word: Word) => void
+    onOpenModal: (word: Word, mode: ModalType) => void
     onReset: () => void,
     onCurrentPage: (page: number) => void,
 };
 
 
-export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }: Props) {
+export default function WordTable({ pageWord, onOpenModal, onReset, onCurrentPage }: Props) {
   const onDlete = async (id?: string) => {
     if(id != null) {
       await deleteWordApi(id);
@@ -30,7 +31,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
           <tr>
             <th style={thStyle}>유형</th>
             <th style={thStyle}>⭐</th>
-            <th style={thStyle}>일본어</th>
+            <th style={{...thStyle, width: "200px"}}>일본어</th>
             <th style={thStyle}>발음</th>
             <th style={thStyle}>한국어 의미</th>
             <th style={thStyle}>음독</th>
@@ -55,7 +56,9 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
               <td style={tdStyle}>
                 <BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}/>
               </td>
-              <td style={tdStyle}>{word.word}</td>
+              <td style={{...tdStyle, fontSize: "30px"}} onClick={() => onOpenModal(word, "VIEW")}>
+                {word.word}
+              </td>
               <td style={tdStyle}>{word.pronunciation}</td>
               <td style={tdStyle}>{word.korean.join(",")}</td>
               <td style={tdStyle}>{word.lastPronunciation == null ? null : word.lastPronunciation.join(", ")}</td>
@@ -66,7 +69,7 @@ export default function WordTable({ pageWord, onModify, onReset, onCurrentPage }
                 <CheckModalButton text="삭제" callFunction={onDlete} args={[word.id]}></CheckModalButton>
               </td>
               <td style={tdStyle}>
-                <button type="button" onClick={() => onModify(word)}>수정</button>
+                <button type="button" onClick={() => onOpenModal(word, "MODIFY")}>수정</button>
               </td>
             </tr>
           ))}

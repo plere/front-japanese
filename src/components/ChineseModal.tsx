@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { modifyWordApi, registerWordApi } from "../api/WordApi";
 import type { Word } from "../types/Word";
+import type { ModalType } from "../App";
 
 type Props = {
     word: Word|null,
-    createMode: boolean,
+    mode: ModalType,
     onClose: () => void;
 };
 
-export default function ChineseModal({word, createMode, onClose}:Props) {
+export default function ChineseModal({word, mode, onClose}:Props) {
     const wordInputElement = useRef<HTMLInputElement>(null);
     const [form, setForm] = useState({
         id: "",
@@ -59,10 +60,13 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
 
     const enterEvent = (e: React.KeyboardEvent<HTMLInputElement> ) => {
         if (e.key === "Enter") {
-            if(createMode) {
-                submitAndClose();
-            } else {
-                modify();
+            switch(mode) {
+                case "CREATE":
+                    submitAndClose();
+                    break;
+                case "MODIFY":
+                    modify();
+                    break;
             }
         }   
     };
@@ -113,9 +117,18 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
                 <div>
                     <div style={inputDivStyle}>
                         <label>한자</label><br />
-                        <input type="text" name="japanese" style={inputStyle} ref={wordInputElement} 
-                            value={form.japanese} onChange={handleInputChange}
-                        />
+                        {
+                            mode != "VIEW" ? 
+                            (<input type="text" name="japanese" style={inputStyle} ref={wordInputElement} value={form.japanese} onChange={handleInputChange}/>)
+                            :
+                            (
+                                (
+                                <div style={{fontSize: "50px"}}>
+                                    {form.japanese}
+                                </div>
+                                )
+                            )
+                        }
                     </div>
                     <div style={inputDivStyle}>
                         <label>뜻[여러개]</label><br />
@@ -149,13 +162,17 @@ export default function ChineseModal({word, createMode, onClose}:Props) {
 
                 <div style={{textAlign:"right", marginTop:"15px"}}>
                     {
-                        createMode ? (
+                        mode == "CREATE" ? (
                             <button type="button" name="createBtn" onClick={submitAndClose}>등록</button>
                         ):(
-                            <button type="button" name="modifyBtn" onClick={modify}>수정</button>
+                            mode == "MODIFY" ?
+                            (<button type="button" name="modifyBtn" onClick={modify}>수정</button>)
+                            : (null)
                         )
                     }
-                    <button type="button" onClick={onClose}>취소</button>
+                    {
+                        mode != "VIEW" && (<button type="button" onClick={onClose}>취소</button>)
+                    }
                 </div>
             </form>
         </div>

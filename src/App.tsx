@@ -7,9 +7,18 @@ import WordModal from './components/WordModal';
 import type { Word } from './types/Word';
 import ChineseModal from './components/ChineseModal';
 import SearchWord from './components/ SearchWord ';
-import type { WordQuery, WordQuerySearchType } from './api/types/WordQuery';
 import QuizeModal from './components/quize/QuizeModal';
 import GrammarModal from './components/GrammarModal';
+import type { WordQuery, WordQuerySearchType } from './api/types/WordType';
+
+const ModalValue = {
+  CREATE: "CREATE",
+  MODIFY: "MODIFY",
+  VIEW: "VIEW"
+} as const;
+
+export type ModalType = typeof ModalValue[keyof typeof ModalValue];
+
 
 function App() {
   const [getQuery, setGetQuery] = useState<WordQuery>({
@@ -23,7 +32,7 @@ function App() {
   const [chineseModalOpen, setChineseModalOpen] = useState(false);
   const [quizeModalOpen, setQuizeModalOpen] = useState(false);
   const [grammarModalOpen, setGrammarModalOpen] = useState(false);
-  const [createMode, setCreateMode] = useState(true);
+  const [modalMode, setModalMode] = useState<ModalType>("CREATE");
   const [word, setWord] = useState<Word|null>(null);
 
   useEffect(() => {
@@ -37,7 +46,8 @@ function App() {
 
   const handleOpenWordModal = () => {
     setWord(null);
-    setCreateMode(true);
+    setModalMode("CREATE")
+    // setCreateMode(true);
     setWordModalOpen(true);
   };
 
@@ -48,7 +58,7 @@ function App() {
 
   const handleOpenChineseModal = () => {
     setWord(null);
-    setCreateMode(true);
+    setModalMode("CREATE")
     setChineseModalOpen(true);
   };
 
@@ -59,7 +69,7 @@ function App() {
 
   const handleOpenGrammarModal = () => {
     setWord(null);
-    setCreateMode(true);
+    setModalMode("CREATE")
     setGrammarModalOpen(true);
   };
 
@@ -87,9 +97,9 @@ function App() {
   const onCurrentPage = (page: number) => setGetQuery({...getQuery, page: page});
   const onReset = () => setGetQuery({page: 1, size:10});
   const onRefresh = () => setRefresh(!refresh);
-  const onModifyMode = (word: Word) => {
+  const onOpenModal = (word: Word, mode: ModalType) => {
     setWord(word);
-    setCreateMode(false);
+    mode == "MODIFY" ? setModalMode("MODIFY") : setModalMode("VIEW");
 
     switch(word.type) {
       case "WORD":
@@ -102,23 +112,22 @@ function App() {
         setGrammarModalOpen(true);
         break;
     }
-  }
-  
+  };
 
   return (
     <>
     <h2 style={{textAlign: "center"}}><a onClick={onReset}>📘 일본어 단어 학습</a></h2>
 
     {wordModalOpen && (
-      <WordModal onClose={handleCloseWordModal} createMode={createMode} word={word}/>
+      <WordModal onClose={handleCloseWordModal} mode={modalMode} word={word}/>
     )}
 
     {chineseModalOpen && (
-      <ChineseModal onClose={handleCloseChineseModal} createMode={createMode} word={word}/>
+      <ChineseModal onClose={handleCloseChineseModal} mode={modalMode} word={word}/>
     )}
 
     {grammarModalOpen && (
-      <GrammarModal onClose={handleCloseGrammarModal} createMode={createMode} word={word}/>
+      <GrammarModal onClose={handleCloseGrammarModal} mode={modalMode} word={word}/>
     )}
 
     {quizeModalOpen && (
@@ -139,7 +148,7 @@ function App() {
       ) : !pageWord ? (
         <p>데이터 로딩 에러...</p>
       ) : (
-        <WordTable pageWord={pageWord} onReset={onRefresh} onModify={onModifyMode} onCurrentPage={onCurrentPage}/>
+        <WordTable pageWord={pageWord} onReset={onRefresh} onOpenModal={onOpenModal} onCurrentPage={onCurrentPage}/>
       )}
     </div>
     </>
