@@ -10,6 +10,7 @@ import SearchWord from './components/ SearchWord ';
 import QuizeModal from './components/quize/QuizeModal';
 import GrammarModal from './components/GrammarModal';
 import type { WordQuery, WordQuerySearchType } from './api/types/WordType';
+import { getAllBookmark } from './api/BookmarkApi';
 
 const ModalValue = {
   CREATE: "CREATE",
@@ -28,6 +29,7 @@ function App() {
   const [pageWord, setPageWord] = useState<PageWord|null>(null);
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [isBookmarkMode, setIsBookmarkMode] = useState(false);
   const [wordModalOpen, setWordModalOpen] = useState(false);
   const [chineseModalOpen, setChineseModalOpen] = useState(false);
   const [quizeModalOpen, setQuizeModalOpen] = useState(false);
@@ -36,18 +38,28 @@ function App() {
   const [word, setWord] = useState<Word|null>(null);
 
   useEffect(() => {
-    getWordsApi(getQuery)
+    if(isBookmarkMode) {
+      getAllBookmark(getQuery)
       .then(setPageWord)
       .catch((error) => {
         console.error("API 호출 실패", error);
       })
       .finally(() => setLoading(false));
-  }, [refresh, getQuery]);
+
+    } else {
+      getWordsApi(getQuery)
+      .then(setPageWord)
+      .catch((error) => {
+        console.error("API 호출 실패", error);
+      })
+      .finally(() => setLoading(false));
+    }
+    
+  }, [refresh, getQuery, isBookmarkMode]);
 
   const handleOpenWordModal = () => {
     setWord(null);
     setModalMode("CREATE")
-    // setCreateMode(true);
     setWordModalOpen(true);
   };
 
@@ -84,6 +96,14 @@ function App() {
     setQuizeModalOpen(false);
   };
 
+  const onOffBookmarkMode = () => {
+    setIsBookmarkMode(!isBookmarkMode);
+    setGetQuery({
+      page: 1,
+      size: 10
+    })
+  }
+
   const onGetQuery = (type?: WordQuerySearchType, value?: string) => {
     if(type != null && value != null) {
       setGetQuery({
@@ -116,8 +136,11 @@ function App() {
 
   return (
     <>
-    <h2 style={{textAlign: "center"}}><a onClick={onReset}>📘 일본어 단어 학습</a></h2>
-
+    <div style={{display:"flex", justifyContent: "center", alignItems:"center", gap:"8px"}}>
+      <button type='button' style={{fontSize: "10px", height: "30px", justifyItems:"center"}} onClick={onOffBookmarkMode}>{isBookmarkMode ? "⭐":"☆"}</button>
+      <h2 style={{textAlign: "center"}}><a onClick={onReset}>📘 일본어 단어 학습</a></h2>
+    </div>
+    
     {wordModalOpen && (
       <WordModal onClose={handleCloseWordModal} mode={modalMode} word={word}/>
     )}
