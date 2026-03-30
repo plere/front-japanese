@@ -132,31 +132,31 @@ export default function ChineseModal({word, mode, onClose}:Props) {
                     </div>
                     <div style={inputDivStyle}>
                         <label>뜻[여러개]</label><br />
-                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange}/>
+                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>음독</label><br />
-                        <input type="text" name="lastPronunciation" style={inputStyle} value={form.lastPronunciation} onChange={handleInputChange} />
+                        <input type="text" name="lastPronunciation" style={inputStyle} value={form.lastPronunciation} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>훈독</label><br />
-                        <input type="text" name="meaningPronunciation" style={inputStyle} value={form.meaningPronunciation} onChange={handleInputChange} />
+                        <input type="text" name="meaningPronunciation" style={inputStyle} value={form.meaningPronunciation} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시</label><br />
-                        <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange} />
+                        <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시 발음</label><br />
-                        <input type="text" name="exampleKorean" style={inputStyle} value={form.exampleKorean} onChange={handleInputChange} />
+                        <input type="text" name="exampleKorean" style={inputStyle} value={form.exampleKorean} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>책 page</label><br />
-                        <input type="text" name="bookPage" style={inputStyle} value={form.bookPage} onChange={handleInputChange} />
+                        <input type="text" name="bookPage" style={inputStyle} value={form.bookPage} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>출처</label><br />
-                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent}/>
+                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent} disabled={mode=="VIEW"}/>
                     </div>
                 </div>
 

@@ -121,19 +121,19 @@ export default function GrammarModal({word, mode, onClose}:Props) {
                     </div>
                     <div style={inputDivStyle}>
                         <label>뜻</label><br />
-                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange}/>
+                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시</label><br />
-                        <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange}/>
+                        <input type="text" name="example" style={inputStyle} value={form.example} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시 뜻</label><br />
-                        <input type="text" name="exampleKorean" style={inputStyle} value={form.exampleKorean} onChange={handleInputChange}/>
+                        <input type="text" name="exampleKorean" style={inputStyle} value={form.exampleKorean} onChange={handleInputChange} disabled={mode=="VIEW"}/>
                     </div>
                     <div style={inputDivStyle}>
                         <label>예시페이지</label><br />
-                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent}/>
+                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent} disabled={mode=="VIEW"}/>
                     </div>
                 </div>
 
