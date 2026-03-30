@@ -36,15 +36,28 @@ export default function QuizeBody({words}: {words: Word[]}) {
           words.map(word => (
             <tr key={word.id}>
               <td>{word.type}</td>
-              <td style={{fontSize: "20px"}}>{word.word} </td>
               <td><BookmarkButton isBookmark={word.bookmarked} wordId={word.id!}></BookmarkButton></td>
+              <td>
+                {word.type !== "GRAMMAR" && (<td style={{fontSize: "20px"}}>{word.word} </td>)}
+                {word.type === "GRAMMAR" && 
+                  (<>
+                    <input type="text" style={inputStyle} />
+                    <td>{word.id != null && openIds.has(word.id) && word.word}</td>
+                  </>)
+                }
+              </td>
               <td>
                 <input type="text" style={inputStyle} />
                 <td>{word.id != null && openIds.has(word.id) && word.pronunciation}</td>
               </td>
               <td>
-                <input type="text" style={inputStyle} />
-                <td>{word.id != null && openIds.has(word.id) && word.korean.join(",")}</td>
+                {word.type !== "GRAMMAR" && 
+                  (<>
+                    <input type="text" style={inputStyle} />
+                    <td>{word.id != null && openIds.has(word.id) && word.korean.join(",")}</td>
+                  </>)
+                }
+                {word.type === "GRAMMAR" && (<td>{word.korean.join(",")} </td>)}
               </td>
               <td>
                 <input type="text" style={inputStyle} />
@@ -55,7 +68,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
                 <td>{word.id != null && openIds.has(word.id) && word.meaningPronunciation?.join(",")}</td>
               </td>
               <td><button onClick={() => showAnswer(word.id)}>정답</button></td>
-              <td>{word.examplePage}</td>
+              <td>{word.examplePage.join(",")}</td>
             </tr>
           ))
         }
