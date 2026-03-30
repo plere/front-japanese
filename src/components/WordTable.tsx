@@ -54,7 +54,7 @@ export default function WordTable({ pageWord, onOpenModal, onReset, onCurrentPag
                 }
               </td>
               <td style={tdStyle}>
-                <BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}/>
+                <BookmarkButton isBookmark={word.bookmarked} wordId={word.id!}/>
               </td>
               <td style={{...tdStyle, fontSize: "30px"}} onClick={() => onOpenModal(word, "VIEW")}>
                 {word.word}

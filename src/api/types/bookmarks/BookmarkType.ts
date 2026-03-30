@@ -38,6 +38,6 @@ export const BookmarkToWord = (bookmark: Bookmark): Word => {
     bookPage: bookmark.bookPage,
     examplePage: bookmark.examplePage,
     etc: bookmark.etc,
-    isBookmarked: true
+    bookmarked: true
   }
 }

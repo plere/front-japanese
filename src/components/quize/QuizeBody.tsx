@@ -36,8 +36,8 @@ export default function QuizeBody({words}: {words: Word[]}) {
           words.map(word => (
             <tr key={word.id}>
               <td>{word.type}</td>
-              <td><BookmarkButton isBookmark={word.isBookmarked} wordId={word.id!}></BookmarkButton></td>
               <td style={{fontSize: "20px"}}>{word.word} </td>
+              <td><BookmarkButton isBookmark={word.bookmarked} wordId={word.id!}></BookmarkButton></td>
               <td>
                 <input type="text" style={inputStyle} />
                 <td>{word.id != null && openIds.has(word.id) && word.pronunciation}</td>
