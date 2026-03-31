@@ -36,7 +36,7 @@ export default function RandomQuize({onClose}: Props) {
   
   return (
     <div style={{position:"fixed", top:"0", left:"0", width:"100%", height:"100%",
-            background:"rgba(0,0,0,0.5)"}}>
+            background:"rgba(0,0,0,0.5)", overflowY: "auto"}}>
      <div style={{background:"#fff", width:"1000px", margin:"100px auto", padding:"20px", borderRadius:"8px"}}>
       {
         loading ? <p>loading..</p> : (

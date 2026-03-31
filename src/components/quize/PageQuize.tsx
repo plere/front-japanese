@@ -107,7 +107,7 @@ export default function PageQuize({onClose}: Props) {
   
   return (
     <div style={{position:"fixed", width:"80%", height:"90%", backgroundColor: "#fff",
-      top:"50%", left:"50%", transform: "translate(-50%, -50%)"}}>
+      top:"50%", left:"50%", transform: "translate(-50%, -50%)", overflowY: "auto"}}>
       <div style={{margin: "20px auto"}}>
         <select value={search.searchType} onChange={(e) => setSearchType(e.target.value )}>
           {searchTypes.map(opt => (

@@ -31,7 +31,7 @@ export default function QuizeModal({onClose} : {onClose: () => void}) {
   
   return (
     <div style={{position:"fixed", top:"0", left:"0", width:"100%", height:"100%", background:"rgba(0,0,0,0.5)"}}>
-      <div style={{background:"#fff", width:"1000px", margin:"100px auto", padding:"20px", borderRadius:"8px"}}>
+      <div style={{background:"#fff", width:"1000px", maxHeight: "80vh", margin:"100px auto", padding:"20px", borderRadius:"8px" }}>
         {randomQuizeOpen && (
           <RandomQuize onClose={handleCloseRandomQuize}/>
         )}
@@ -43,16 +43,20 @@ export default function QuizeModal({onClose} : {onClose: () => void}) {
         {bookmarkQuizeOpen && (
           <BookmarkQuize onClose={handleCloseBookmarkQuize}/>
         )}
-    
-        <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
-          <a onClick={handleOpenRandomQuize} >1. 랜덤 퀴즈</a>
-        </div>
-        <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
-          <a onClick={handleOpenPageQuize} >2. 페이지 퀴즈</a>
-        </div>
-        <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
-          <a onClick={handleOpenBookmarkQuize} >3. 북마크 퀴즈</a>
-        </div>
+
+        {!randomQuizeOpen && !pageQuizeOpen && !bookmarkQuizeOpen && (
+          <>
+            <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
+              <a onClick={handleOpenRandomQuize} >1. 랜덤 퀴즈</a>
+            </div>
+            <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
+              <a onClick={handleOpenPageQuize} >2. 페이지 퀴즈</a>
+            </div>
+            <div style={{width: "80%", margin: "20px auto", textAlign: "center", display: "flex", justifyContent: "center", gap: "8px"}}>
+              <a onClick={handleOpenBookmarkQuize} >3. 북마크 퀴즈</a>
+            </div>
+          </>  
+        )}
       </div>
     </div>
   );
