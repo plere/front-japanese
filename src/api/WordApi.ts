@@ -7,6 +7,12 @@ const api = axios.create({
   baseURL: "http://localhost:10000", // Spring 서버
 });
 
+export const getWordApi = async (id: string): Promise<Word> => {
+  const response = await api.get<Word>(`/api/${id}`);
+
+  return response.data;
+};
+
 export const getWordsApi = async (query: WordQuery): Promise<PageWord> => {
   const response = await api.get<PageWord>("/api", {
     params: query

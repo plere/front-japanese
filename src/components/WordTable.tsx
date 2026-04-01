@@ -5,6 +5,8 @@ import CheckModalButton from "../common/CheckModalButton";
 import type { Word } from "../types/Word";
 import BookmarkButton from "./BookmarkButton";
 import CurrentPageList from "./WordPagenation";
+import { useNavigate } from "react-router-dom";
+
 
 type Props = {
     pageWord: PageWord,
@@ -15,6 +17,7 @@ type Props = {
 
 
 export default function WordTable({ pageWord, onOpenModal, onReset, onCurrentPage }: Props) {
+  const navigate = useNavigate();
   const onDlete = async (id?: string) => {
     if(id != null) {
       await deleteWordApi(id);
@@ -56,7 +59,7 @@ export default function WordTable({ pageWord, onOpenModal, onReset, onCurrentPag
               <td style={tdStyle}>
                 <BookmarkButton isBookmark={word.bookmarked} wordId={word.id!}/>
               </td>
-              <td style={{...tdStyle, fontSize: "30px"}} onClick={() => onOpenModal(word, "VIEW")}>
+              <td style={{...tdStyle, fontSize: "30px"}} onClick={() => navigate(`/details/${word.id}/`)}>
                 {word.word}
               </td>
               <td style={tdStyle}>{word.pronunciation}</td>
