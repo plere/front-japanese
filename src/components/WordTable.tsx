@@ -1,6 +1,5 @@
 import type { PageWord } from "../api/types/PageWordResponse";
 import { deleteWordApi } from "../api/WordApi";
-import type { ModalType } from "../App";
 import CheckModalButton from "../common/CheckModalButton";
 import type { Word } from "../types/Word";
 import BookmarkButton from "./BookmarkButton";
@@ -10,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
     pageWord: PageWord,
-    onOpenModal: (word: Word, mode: ModalType) => void
+    onOpenModal: (word: Word) => void
     onReset: () => void,
     onCurrentPage: (page: number) => void,
 };
@@ -72,7 +71,7 @@ export default function WordTable({ pageWord, onOpenModal, onReset, onCurrentPag
                 <CheckModalButton text="삭제" callFunction={onDlete} args={[word.id]}></CheckModalButton>
               </td>
               <td style={tdStyle}>
-                <button type="button" onClick={() => onOpenModal(word, "MODIFY")}>수정</button>
+                <button type="button" onClick={() => onOpenModal(word)}>수정</button>
               </td>
             </tr>
           ))}

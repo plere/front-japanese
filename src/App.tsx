@@ -14,8 +14,7 @@ import { getAllBookmark } from './api/BookmarkApi';
 
 const ModalValue = {
   CREATE: "CREATE",
-  MODIFY: "MODIFY",
-  VIEW: "VIEW"
+  MODIFY: "MODIFY"
 } as const;
 
 export type ModalType = typeof ModalValue[keyof typeof ModalValue];
@@ -117,9 +116,9 @@ function App() {
   const onCurrentPage = (page: number) => setGetQuery({...getQuery, page: page});
   const onReset = () => setGetQuery({page: 1, size:10});
   const onRefresh = () => setRefresh(!refresh);
-  const onOpenModal = (word: Word, mode: ModalType) => {
+  const onOpenModal = (word: Word) => {
     setWord(word);
-    mode == "MODIFY" ? setModalMode("MODIFY") : setModalMode("VIEW");
+    setModalMode("MODIFY");
 
     switch(word.type) {
       case "WORD":

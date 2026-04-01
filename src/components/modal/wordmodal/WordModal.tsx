@@ -9,7 +9,6 @@ type Props = {
     onClose: () => void;
 };
 
-
 export default function WordModal({word, mode, onClose}:Props) {
     const wordInputElement = useRef<HTMLInputElement>(null);
     const [form, setForm] = useState({
@@ -104,40 +103,25 @@ export default function WordModal({word, mode, onClose}:Props) {
             {/* <!-- WORD 유형 --> */}
             <form>
                 <div>
-                    {/* <input type="hidden" name="mode">
-                    <input type="hidden" name="id"> */}
-
                     <div style={inputDivStyle}>
                         <label>일본어 단어</label><br />
-                        {
-                            mode != "VIEW" ? 
-                            (<input type="text" name="japanese" style={inputStyle} ref={wordInputElement} value={form.japanese} onChange={handleInputChange}/>)
-                            :
-                            (
-                                (
-                                <div style={{fontSize: "35px"}}>
-                                    {form.japanese}
-                                </div>
-                                )
-                            )
-                        }
+                        <input type="text" name="japanese" style={inputStyle} ref={wordInputElement} value={form.japanese} onChange={handleInputChange}/>
                     </div>
-
                     <div style={inputDivStyle}>
                         <label>발음</label><br />
-                        <input type="text" name="pronunciation" style={inputStyle} value={form.pronunciation} onChange={handleInputChange} disabled={mode=="VIEW"}/>
+                        <input type="text" name="pronunciation" style={inputStyle} value={form.pronunciation} onChange={handleInputChange} />
                     </div>
                     <div style={inputDivStyle}>
                         <label>뜻[여러개]</label><br />
-                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange} disabled={mode=="VIEW"}/>
+                        <input type="text" name="korean" style={inputStyle} value={form.korean} onChange={handleInputChange} />
                     </div>
                     <div style={inputDivStyle}>
                         <label>etc</label><br />
-                        <input type="text" name="etc" style={inputStyle} value={form.etc} onChange={handleInputChange} disabled={mode=="VIEW"}/>
+                        <input type="text" name="etc" style={inputStyle} value={form.etc} onChange={handleInputChange} />
                     </div>
                     <div style={inputDivStyle}>
                         <label>출처</label><br />
-                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent} disabled={mode=="VIEW"}/>
+                        <input type="text" name="examplePage" style={inputStyle} value={form.examplePage} onChange={handleInputChange} onKeyDown={enterEvent} />
                     </div>
                 </div>
 
@@ -151,9 +135,7 @@ export default function WordModal({word, mode, onClose}:Props) {
                             : (null)
                         )
                     }
-                    {
-                        mode != "VIEW" && (<button type="button" onClick={onClose}>취소</button>)
-                    }
+                    <button type="button" onClick={onClose}>취소</button>
                 </div>
             </form>
         </div>
