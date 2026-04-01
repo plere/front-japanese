@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { modifyWordApi, registerWordApi } from "../api/WordApi";
-import type { Word } from "../types/Word";
-import type { ModalType } from "../App";
+import { modifyWordApi, registerWordApi } from "../../../api/WordApi";
+import type { Word } from "../../../types/Word";
+import type { ModalType } from "../../../App";
 
 type Props = {
     word: Word|null,

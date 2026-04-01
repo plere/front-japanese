@@ -3,12 +3,12 @@ import './App.css'
 import { getWordsApi } from './api/WordApi';
 import WordTable from './components/WordTable';
 import type { PageWord } from './api/types/PageWordResponse';
-import WordModal from './components/WordModal';
+import WordModal from './components/modal/wordmodal/WordModal';
+import ChineseModal from './components/modal/chinesemodal/ChineseModal';
+import GrammarModal from './components/modal/grammarmodal/GrammarModal';
 import type { Word } from './types/Word';
-import ChineseModal from './components/ChineseModal';
 import SearchWord from './components/ SearchWord ';
 import QuizeModal from './components/quize/QuizeModal';
-import GrammarModal from './components/GrammarModal';
 import type { WordQuery, WordQuerySearchType } from './api/types/WordType';
 import { getAllBookmark } from './api/BookmarkApi';
 
