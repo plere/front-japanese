@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import type { PageWord } from "./types/PageWordResponse";
 import type { Word } from "../types/Word";
-import type { ModifyWordType, RegisterWordType, WordPageRangeType, WordQuery } from "./types/WordType";
+import type { ModifyWordType, RegisterWordType, SerchSelectType, WordPageRangeType, WordQuery } from "./types/WordType";
 
 const api = axios.create({
   baseURL: "http://localhost:10000", // Spring 서버
@@ -29,8 +29,12 @@ export const getWordPageRangeApi = async (query: WordPageRangeType): Promise<Pag
   return response.data;
 };
 
-export const getRandomWordsApi = async (): Promise<Word[]> => {
-  const response = await api.get<Word[]>("/api/random");
+export const getRandomWordsApi = async (type: SerchSelectType): Promise<Word[]> => {
+  const response = await api.get<Word[]>("/api/random", {
+    params: {
+      type: type === "NONE" ? null : type
+    }
+  });
 
   return response.data;
 }

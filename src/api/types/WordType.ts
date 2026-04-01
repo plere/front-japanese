@@ -51,3 +51,10 @@ export const WordTypeValue = {
 export type WordTypeValueType = typeof WordTypeValue[keyof typeof WordTypeValue];
 
 export type WordQuerySearchType = "WORD_TYPE"|"KOREAN"|"PAGE"|"PRONUNCIATION";
+
+export const SerchSelectValue ={
+  ...WordTypeValue,
+  NONE: "NONE"
+};
+
+export type SerchSelectType = typeof SerchSelectValue[keyof typeof SerchSelectValue];
