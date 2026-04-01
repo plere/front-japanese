@@ -54,6 +54,15 @@ export const modifyWordApi = (word: ModifyWordType) => {
     return api.put<void>("/api", word);
 }
 
+export const addLinkWordApi = async (id: string, linkId: string) => {
+  await api.post<void>(`/api/${id}/link/${linkId}`);
+}
+
+export const removeLinkWordApi = async (id: string, linkId: string) => {
+  await api.delete<void>(`/api/${id}/link/${linkId}`);
+}
+
+
 export const deleteWordApi = (id: string) => {
     return api.delete<void>(`/api/${id}`);
 };

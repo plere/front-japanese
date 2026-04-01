@@ -44,7 +44,7 @@ export default function SearchWord ({onGetQuery}: {onGetQuery: (type?: WordQuery
   }
 
   return (
-    <>
+    <div style={{display:"flex", justifyContent:"center", gap:"5px"}}>
     <select value={search.searchType} onChange={(e) => setSearchType(e.target.value as WordQuerySearchType )}>
       {searchTypes.map(opt => (
         <option key={opt.value} value={opt.value}>
@@ -69,6 +69,6 @@ export default function SearchWord ({onGetQuery}: {onGetQuery: (type?: WordQuery
     }
 
     <button type="button" onClick={startSearch}>검색</button>
-    </>
+    </div>
   )
 };

@@ -12,4 +12,11 @@ export type Word = {
     examplePage: string[];
     etc?: string;
     bookmarked: boolean;
+    linkWords: LinkWord[];
+}
+
+export type LinkWord = {
+    wordId: string;
+    type: string;
+    word: string;
 }
