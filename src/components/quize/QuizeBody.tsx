@@ -35,7 +35,7 @@ export default function QuizeBody({words}: {words: Word[]}) {
         {
           words.map(word => (
             <tr key={word.id}>
-              <td>{word.type}</td>
+              <td onClick={() => window.open(`/details/${word.id}`, "_blank")}>{word.type}</td>
               <td><BookmarkButton isBookmark={word.bookmarked} wordId={word.id!}></BookmarkButton></td>
               <td>
                 {word.type !== "GRAMMAR" && (<td style={{fontSize: "20px"}}>{word.word} </td>)}
